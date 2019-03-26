@@ -5,6 +5,9 @@
     <string name="skip">No</string>
     <string name="start">Finish</string>
 
+    <string name="slide_1_beign">Warning</string>
+    <string name="slide_1_desc_begin">We have detected moderate collision incident.Please follow the next steps.</string>
+
     <string name="slide_1_title">Step 1</string>
     <string name="slide_1_desc">Are there any occupant injuries?</string>
 
@@ -18,7 +21,7 @@
     <string name="slide_4_desc">Shall I contact your personal emergency contacts?</string>
 
     <string name="slide_5_title">Step 5</string>
-    <string name="slide_5_desc">Shall I contact your insurance company?</string>
+    <string name="slide_5_desc">Shall I contact your insurance company? \nIncident report will be sent from OnStar</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
