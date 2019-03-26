@@ -1,21 +1,24 @@
 <resources>
     <string name="app_name">GuardiansOfZ</string>
     <string name="title_activity_welcome">Home Screen</string>
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="start">GOT IT</string>
+    <string name="next">Yes</string>
+    <string name="skip">No</string>
+    <string name="start">Finish</string>
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_title">Step 1</string>
+    <string name="slide_1_desc">Are there any occupant injuries?</string>
 
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+    <string name="slide_2_title">Step 2</string>
+    <string name="slide_2_desc">Should I contact 911 for you?</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Step 3</string>
+    <string name="slide_3_desc">Can you move your vehicle safely off the road?</string>
 
-    <string name="slide_4_title">World Travel</string>
-    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+    <string name="slide_4_title">Step 4</string>
+    <string name="slide_4_desc">Shall I contact your personal emergency contacts?</string>
+
+    <string name="slide_5_title">Step 5</string>
+    <string name="slide_5_desc">Shall I contact your insurance company?</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>

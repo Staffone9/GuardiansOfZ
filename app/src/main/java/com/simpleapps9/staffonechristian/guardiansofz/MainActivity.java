@@ -1,8 +1,13 @@
 package com.simpleapps9.staffonechristian.guardiansofz;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip, btnNext;
+    static final int REQUEST_PHONE_CALL=2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnSkip = (Button) findViewById(R.id.btn_skip);
         btnNext = (Button) findViewById(R.id.btn_next);
-
 
         // layouts of all welcome sliders
         // add few more layouts if you want
@@ -65,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   launchHomeScreen();
+                int current = getItem(+1);
+                nextSlide(current);
             }
         });
 
@@ -75,15 +82,70 @@ public class MainActivity extends AppCompatActivity {
                 // checking for last page
                 // if last page home screen will be launched
                 int current = getItem(+1);
-                if (current < layouts.length) {
-                    // move to next screen
-                    viewPager.setCurrentItem(current);
-                } else {
-                 //   launchHomeScreen();
-                }
+                customAction(current);
+                nextSlide(current);
             }
         });
 
+    }
+
+    private void nextSlide(int current) {
+        if (current < layouts.length) {
+            // move to next screen
+            viewPager.setCurrentItem(current);
+        } else {
+            //   launchHomeScreen();
+        }
+    }
+
+    private void customAction(int current) {
+        switch (current) {
+            case 1: {
+
+                break;
+            }
+
+            case 2: {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+                }else{
+//                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+15197814696"));
+//                    startActivity(intent);
+                    callNineOneOne();
+                }
+                break;
+            }
+        }
+
+    }
+
+    private void callNineOneOne() {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+15197814696"));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_PHONE_CALL: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    callNineOneOne();
+                }
+                else
+                {
+
+                }
+                return;
+            }
+        }
     }
 
     private void addBottomDots(int currentPage) {
@@ -163,10 +225,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
             View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
-
             return view;
         }
 
